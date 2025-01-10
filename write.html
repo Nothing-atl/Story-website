@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a New Story</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Write a New Story</h1>
+        <p>Share your creativity with the world!</p>
+    </header>
+
+    <div class="container">
+        <form action="/submit-story" method="POST" id="story-form">
+            <div class="form-group">
+                <label for="title">Story Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter your story title" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="content">Story Content:</label>
+                <textarea id="content" name="content" placeholder="Write your story here..." rows="10" required></textarea>
+            </div>
+        
+            <div class="form-group">
+                <label for="tags">Tags (comma-separated):</label>
+                <input type="text" id="tags" name="tags" placeholder="e.g., fiction, adventure">
+            </div>
+        
+            <button type="submit" class="new-story-button">Submit Story</button>
+        </form>
+        
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="index.html" class="new-story-button">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>My Story Blog &copy; 2025</p>
+    </footer>
+</body>
+</html>
