@@ -109,4 +109,13 @@ document.addEventListener("DOMContentLoaded", () => {
     loadLikes("story-9");
     loadLikes("story-10");
     loadLikes("story-11");
+    loadLikes("story-12");
+    loadLikes("story-13");
+    loadLikes("story-14");
+    loadLikes("story-15");
+    loadLikes("story-16");
+    loadLikes("story-17");
+    loadLikes("story-18");
+    loadLikes("story-19");
+    loadLikes("story-20");
 });
