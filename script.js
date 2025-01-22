@@ -3,7 +3,7 @@ console.log("Script is running!");
 // Import the functions you need from the SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
-import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+import { getDatabase, ref, set, get, onValue, push} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 import { setLogLevel } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
@@ -96,6 +96,81 @@ function loadLikes(storyId) {
 }
 
 
+
+
+
+function addComment(storyId, event) {
+    event.preventDefault(); // Prevent page reload
+
+    const user = auth.currentUser; // Get the authenticated user
+    if (!user) {
+        alert("You must be signed in to post a comment.");
+        return;
+    }
+
+    const commentInput = document.getElementById(`comment-input-${storyId}`);
+    const commentText = commentInput.value.trim();
+
+    if (!commentText) {
+        alert("Comment cannot be empty.");
+        return;
+    }
+
+    console.log(`Adding comment for story: ${storyId}`); // Debugging log
+
+    // Firebase reference
+    const commentsRef = ref(db, `comments/${storyId}`);
+    const newCommentRef = push(commentsRef);
+
+    const commentData = {
+        userId: user.uid,
+        username: user.displayName || "Anonymous",
+        content: commentText,
+        timestamp: Date.now()
+    };
+
+    // Save to Firebase
+    set(newCommentRef, commentData)
+        .then(() => {
+            console.log("Comment added successfully:", commentData);
+            commentInput.value = ""; // Clear the input field
+        })
+        .catch((error) => {
+            console.error("Error adding comment:", error);
+        });
+}
+
+// Expose addComment to the global scope
+window.addComment = addComment;
+
+
+
+
+function loadComments(storyId) {
+    const commentsRef = ref(db, `comments/${storyId}`);
+
+    onValue(commentsRef, (snapshot) => {
+        const commentsContainer = document.getElementById(`comments-${storyId}`);
+        commentsContainer.innerHTML = ""; // Clear old comments
+
+        if (snapshot.exists()) {
+            const commentsData = snapshot.val();
+            Object.values(commentsData).forEach((comment) => {
+                const commentElement = document.createElement("div");
+                commentElement.classList.add("comment");
+                commentElement.innerHTML = `
+                    <p><strong>${comment.username}:</strong> ${comment.content}</p>
+                    <small>${new Date(comment.timestamp).toLocaleString()}</small>
+                `;
+                commentsContainer.appendChild(commentElement);
+            });
+        } else {
+            commentsContainer.innerHTML = "<p>No comments yet. Be the first to comment!</p>";
+        }
+    });
+}
+
+
 // Load likes when the page loads
 document.addEventListener("DOMContentLoaded", () => {
     loadLikes("story-1"); // Load likes for story-1
@@ -118,4 +193,31 @@ document.addEventListener("DOMContentLoaded", () => {
     loadLikes("story-18");
     loadLikes("story-19");
     loadLikes("story-20");
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    loadComments("story-1");
+    loadComments("story-2");
+    loadComments("story-3");
+    loadComments("story-4");
+    loadComments("story-5");
+    loadComments("story-6");
+    loadComments("story-7");
+    loadComments("story-8");
+    loadComments("story-9");
+    loadComments("story-10");
+    loadComments("story-11");
+    loadComments("story-12");
+    loadComments("story-13");
+    loadComments("story-14");
+    loadComments("story-15");
+    loadComments("story-16");
+    loadComments("story-17");
+    loadComments("story-18");
+    loadComments("story-19");
+    loadComments("story-20");
+    loadComments("story-21");
+    loadComments("story-22");
+
 });

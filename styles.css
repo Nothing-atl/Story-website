@@ -106,3 +106,41 @@ footer {
     padding: 1rem 0;
     margin-top: 2rem;
 }
+.like-section {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.like-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.like-button:hover {
+    background-color: #0056b3;
+}
+
+.like-count {
+    font-weight: bold;
+    color: #333;
+}
+.like-button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: brown; 
+    cursor: pointer;
+}
+
+.like-button:hover {
+    transform: scale(1.2); 
+    transition: transform 0.2s ease-in-out;
+}
+
+

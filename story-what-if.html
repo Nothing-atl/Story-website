@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Breathless Kiss - Full Story</title>
+    <script type="module" src="script.js" defer></script>
     <style>
         /* Page Styles */
         body {
@@ -58,6 +59,39 @@
         a.back-link:hover {
             text-decoration: underline;
         }
+        .comment-section {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .comments {
+            margin-top: 10px;
+        }
+        
+        .comment {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -80,6 +114,15 @@
             &nbsp &nbsp As we struggled to pull ourselves into each-other, the taste of kiss changed too. It was sugary, and now it started tasting slightly salty, as if our lips were swelling. The kiss continued though, and our breaths, turning louder and longer, took the temperature inside the blanked to a dangerous degree. But we were not going to end that kiss, not that night, even ifour breaths burned us. And breathlessly, we kept on kissing
         </p>
         <a href="index.html" class="back-link">Back to Home</a>
+
+        <div class="comment-section">
+            <h3>Comments</h3>
+            <div id="comments-story-1" class="comments"></div>
+            <form onsubmit="addComment('story-1', event)">
+                <textarea id="comment-input-story-1" placeholder="Write a comment..." required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+        </div>
     </main>
 </body>
 </html>
